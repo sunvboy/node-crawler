@@ -1,0 +1,5 @@
+npm install --yes
+=> tao nhanh file package.json
+npm install cheerio request request-promise
+cai dat mongodb 
+npm install mongoose

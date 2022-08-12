@@ -1,0 +1,62 @@
+﻿Chuẩn Bị:
+
+Link Web Thực Hành: http://demo-php-bookstore.zendvn.xyz/
+NodeJS: phiên bản 16 trở lên.
+TK MongoDB và phần mềm MongoDB Compass: https://youtu.be/j4Im551RO5U
+Chrome Extension: One-click JavaScript Toggle 
+Editor: Visual Studio Code: https://youtu.be/krS1N_hsYQA
+
+Dữ liệu cần lấy:
+1. Category : {name, link}
+2. Get Product In Category : {name, link, image, price_normal, price_sale, category_id, category_name}
+- Get Product One Category.
++ No Pagination.
++ Pagination
+- Get Product All Category.
+3. Get Description In Product: {name, link, image, description, price_normal, price_sale, category_id, category_name}
+- Tham khảo download image: https://stackoverflow.com/questions/12740659/downloading-images-with-node-js
+- Random String: Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
+
+Các Tình Huống Trong Thực Tế:
+
+1. Click và gọi Ajax để lấy dữ liệu.
+- Tham khảo: https://github.com/segmentio/nightmare
+2. Tự động đăng nhập và lấy dữ liệu.
+- Tham khảo: https://github.com/puppeteer/puppeteer
+3. Scroll Page và lấy dữ liệu.
+- Tham khảo: https://intoli.com/blog/scrape-infinite-scroll/
+
+Email: admin@gmail.com
+Password: 12345678
+
+Project tổng hợp:
+
+1. Lấy toàn bộ data của web bao gồm: (chỉ cần chạy 1 file)
+Category: {name, link, special}
+Product: {name, link, price, image,... ,special}
+News: {name, link, image..special}
+
+2. Cập Nhật Tin Mới.
+
+- Giải Pháp 1: 
++ Mỗi lần cập nhật sẽ vào web quét lấy toàn bộ dữ liệu.
++ Xoá toàn bộ dữ liệu cũ và lưu dữ liệu mới.
+
+- Giải Pháp 2:
++ Lần đầu quét lưu toàn bộ dữ liệu và lưu thêm bảng history.
+
+    type        time            latest_id
+    category    Date.Now()          25
+    product     Date.Now()      {1: 25, 2: 44, 3: 0...}
+    News        Date.Now()          21
+
++ Những lần sau chỉ quét lấy tin mới và chỉ lưu tin mới vào.
+
+3. Đồng bộ tin.
+
+- Quét qua toàn bộ link đã lưu của category, news, product hiện tại.
+- Tin không tồn tại sẽ xoá đi.
+- Tin tồn tại thì sẽ đối chiếu:
++ Nếu lần chỉnh sửa cuối > time_crawler thì lưu lại dữ liệu mới.
++ Nếu lần chỉnh sửa cuối = time_crawler thì không làm gì cả.
+
